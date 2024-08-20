@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="d-flex justify-content-between mb-4">
+                <h2 class="text-center">Add a new Todo Item</h2>
+                <a class="btn btn-outline-success btn-lg" href="/">
+                    <i class="bi bi-arrow-left-square-fill"></i> Back
+                </a>
+            </div>
+            <form th:action="@{/todo}" th:object="${todoItem}" method="POST">
+                <div class="form-group mb-3">
+                    <label for="title">Title</label>
+                    <input class="form-control" type="text" th:field="*{title}" id="title" placeholder="Title" />
+                    <div th:if="${#fields.hasErrors('title')}" class="text-danger mt-2">
+                        <p th:errors="*{title}"></p>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" th:field="*{description}" id="description" placeholder="Description"></textarea>
+                </div>
+                <div class="form-group form-check mb-3">
+                    <input class="form-check-input" type="checkbox" th:field="*{completed}" id="completed">
+                    <label class="form-check-label" for="completed">Completed?</label>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="bi bi-plus-square-fill"></i> Add Todo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.min.js}"></script>
+</body>
+</html>
