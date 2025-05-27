@@ -2,6 +2,15 @@
 
 A simple Spring Boot-based web application for managing todo items with CRUD operations.
 
+## 📸 Screenshots
+
+### 📝 New Task Form
+![New Task Form](images/new-task.png)
+
+### 📋 Todo List View
+![Todo List View](images/todo-list.png)
+
+
 ## 📌 Features
 
 - Create, update, delete, and view todo items
