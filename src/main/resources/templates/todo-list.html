@@ -34,8 +34,8 @@
                     <span th:if="${item.completed} == true" th:text="Yes" />
                     <span th:unless="${item.completed} == true" th:text="No" />
                 </td>
-                <td th:text="${item.createdAt}"></td>
-                <td th:text="${item.updatedAt}"></td>
+                <td th:text="${#temporals.format(item.createdAt, 'dd-MM-yyyy HH:mm')}"></td>
+                <td th:text="${#temporals.format(item.updatedAt, 'dd-MM-yyyy HH:mm')}"></td>
                 <td>
                     <div class="btn btn-group-sm" role="group">
                         <a class="btn btn-info" th:href="@{/edit/{id}(id=${item.id})}">

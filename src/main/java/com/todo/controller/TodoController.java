@@ -53,7 +53,7 @@ public class TodoController {
             return "new-todo-item";
         }
         todoService.createTodoItem(todoItem);
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     /**
@@ -94,12 +94,18 @@ public class TodoController {
      * @return a redirect to the home page if successful, or the form view if there are validation errors.
      */
     @PostMapping("/todo/{id}")
-    public String updateTodoItem(@PathVariable("id") Long id, @Valid TodoItem todoItem, BindingResult result, Model model) {
+    public String updateTodoItem(@PathVariable("id") Long id, @Valid TodoItem todoItem,
+                                 BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("todo", todoItem);
             return "edit-todo";
         }
-        todoService.updateTodoItem(id, todoItem);
-        return "redirect:/home";
+
+        TodoItem updated = todoService.updateTodoItem(id, todoItem);
+        if(updated == null) {
+            model.addAttribute("error", "Todo not found");
+            return "error";
+        }
+        return "redirect:/";
     }
 }
